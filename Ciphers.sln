@@ -5,6 +5,12 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caesar cripher", "Criphers\Caesar cripher.csproj", "{FA4073D7-F0E2-4BEC-8ADF-C2E328BCD02B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Caesar cripher", "Caesar cripher", "{959C1E2D-87BA-448B-988B-8382C8B1A3D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Polybius cipher", "Polybius cipher", "{8F375A04-330C-446F-B8E7-14597BF221EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polybius cipher", "Polybius cipher\Polybius cipher.csproj", "{A874F2EC-1FB1-4DBC-B0BD-B8DF004BADBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{FA4073D7-F0E2-4BEC-8ADF-C2E328BCD02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA4073D7-F0E2-4BEC-8ADF-C2E328BCD02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA4073D7-F0E2-4BEC-8ADF-C2E328BCD02B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A874F2EC-1FB1-4DBC-B0BD-B8DF004BADBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A874F2EC-1FB1-4DBC-B0BD-B8DF004BADBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A874F2EC-1FB1-4DBC-B0BD-B8DF004BADBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A874F2EC-1FB1-4DBC-B0BD-B8DF004BADBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FA4073D7-F0E2-4BEC-8ADF-C2E328BCD02B} = {959C1E2D-87BA-448B-988B-8382C8B1A3D0}
+		{A874F2EC-1FB1-4DBC-B0BD-B8DF004BADBC} = {8F375A04-330C-446F-B8E7-14597BF221EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93761482-CD98-4BEA-B2D7-6FF41C61543D}
