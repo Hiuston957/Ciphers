@@ -30,6 +30,9 @@
         {
             label4 = new Label();
             panel1 = new Panel();
+            Run_cipher = new Button();
+            InputBox = new TextBox();
+            OutputBox = new TextBox();
             SuspendLayout();
             // 
             // label4
@@ -49,11 +52,38 @@
             panel1.Size = new Size(190, 150);
             panel1.TabIndex = 9;
             // 
+            // Run_cipher
+            // 
+            Run_cipher.Location = new Point(432, 283);
+            Run_cipher.Name = "Run_cipher";
+            Run_cipher.Size = new Size(75, 23);
+            Run_cipher.TabIndex = 10;
+            Run_cipher.Text = "button1";
+            Run_cipher.UseVisualStyleBackColor = true;
+            Run_cipher.Click += button1_Click;
+            // 
+            // InputBox
+            // 
+            InputBox.Location = new Point(467, 166);
+            InputBox.Name = "InputBox";
+            InputBox.Size = new Size(100, 23);
+            InputBox.TabIndex = 11;
+            // 
+            // OutputBox
+            // 
+            OutputBox.Location = new Point(655, 166);
+            OutputBox.Name = "OutputBox";
+            OutputBox.Size = new Size(100, 23);
+            OutputBox.TabIndex = 12;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(OutputBox);
+            Controls.Add(InputBox);
+            Controls.Add(Run_cipher);
             Controls.Add(panel1);
             Controls.Add(label4);
             Name = "Form1";
@@ -66,5 +96,8 @@
 
         private Label label4;
         private Panel panel1;
+        private Button Run_cipher;
+        private TextBox InputBox;
+        private TextBox OutputBox;
     }
 }

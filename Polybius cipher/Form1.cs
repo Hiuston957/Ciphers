@@ -1,4 +1,5 @@
-using System.IO;
+﻿using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Polybius_cipher
 {
@@ -20,12 +21,12 @@ namespace Polybius_cipher
         {
             InitializeComponent();
             StworzSiatke(5, 7);
-            czytaj();
+            // czytaj();
         }
 
         private void StworzSiatke(int liczbaWierszy, int liczbaKolumn)
         {
-            
+
             siatka.Dock = DockStyle.Fill;
             siatka.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
@@ -37,9 +38,9 @@ namespace Polybius_cipher
                 {
                     siatka.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
                     TextBox poleTekstowe = new TextBox();
-                    poleTekstowe.Text = i.ToString();
+                    poleTekstowe.Text = (i * 10 + j).ToString();
                     poleTekstowe.Width = 20;
-                    poleTekstowe.MaxLength = 1;
+                    // poleTekstowe.MaxLength = 2;
                     siatka.Controls.Add(poleTekstowe, j, i);
                 }
             }
@@ -56,7 +57,7 @@ namespace Polybius_cipher
         {
 
 
-            for(int i=0;i<=4;i++)
+            for (int i = 0; i <= 6; i++)
             {
                 for (int j = 0; j <= 4; j++)
                 {
@@ -64,15 +65,15 @@ namespace Polybius_cipher
 
                     string wartosc = pt.Text;
 
-                    PolybiusList.Add(new PolyList() { id = wartosc[0], XAx = j, YAx=i });
+                    PolybiusList.Add(new PolyList() { id = wartosc[0], XAx = j, YAx = i });
 
-                    
+
 
                 }
 
             }
 
-            for (int k = 0; k <= 5; k++) { };
+            //for (int k = 0; k <= 5; k++) { };
 
 
 
@@ -82,8 +83,30 @@ namespace Polybius_cipher
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            czytaj();
+            string InputTxT = InputBox.Text.ToLower();
 
+            List<char> Output = new List<char>();
 
+            foreach (char letter in InputTxT)
+            {
+                PolyList znalezionaKlasa = PolybiusList.FirstOrDefault(klasa => klasa.id == letter);
 
+                Output.Add((znalezionaKlasa.XAx+1).ToString()[0]);
+                Output.Add((znalezionaKlasa.YAx+1).ToString()[0]);
+
+            }
+
+            string FinalOutput = string.Join("", Output);
+            OutputBox.Text = FinalOutput;
+
+               // PolyList znalezionaKlasa = PolybiusList.FirstOrDefault(klasa => klasa.id == 'q');
+
+            // label4.Text = ($" {znalezionaKlasa.XAx} {znalezionaKlasa.YAx}");
+
+            //  czytaj();
+        }
     }
 }
