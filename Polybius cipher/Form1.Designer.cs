@@ -33,6 +33,9 @@
             Run_cipher = new Button();
             InputBox = new TextBox();
             OutputBox = new TextBox();
+            Run_decipher = new Button();
+            InputLabel = new Label();
+            OutputLabel = new Label();
             SuspendLayout();
             // 
             // label4
@@ -54,11 +57,11 @@
             // 
             // Run_cipher
             // 
-            Run_cipher.Location = new Point(432, 283);
+            Run_cipher.Location = new Point(545, 226);
             Run_cipher.Name = "Run_cipher";
-            Run_cipher.Size = new Size(75, 23);
+            Run_cipher.Size = new Size(146, 23);
             Run_cipher.TabIndex = 10;
-            Run_cipher.Text = "button1";
+            Run_cipher.Text = "Run encryption";
             Run_cipher.UseVisualStyleBackColor = true;
             Run_cipher.Click += button1_Click;
             // 
@@ -68,6 +71,7 @@
             InputBox.Name = "InputBox";
             InputBox.Size = new Size(100, 23);
             InputBox.TabIndex = 11;
+            InputBox.TextChanged += InputBox_TextChanged;
             // 
             // OutputBox
             // 
@@ -76,11 +80,44 @@
             OutputBox.Size = new Size(100, 23);
             OutputBox.TabIndex = 12;
             // 
+            // Run_decipher
+            // 
+            Run_decipher.Location = new Point(545, 269);
+            Run_decipher.Name = "Run_decipher";
+            Run_decipher.Size = new Size(146, 23);
+            Run_decipher.TabIndex = 13;
+            Run_decipher.Text = "Run decryption";
+            Run_decipher.UseVisualStyleBackColor = true;
+            Run_decipher.Click += Run_decipher_Click;
+            // 
+            // InputLabel
+            // 
+            InputLabel.AutoSize = true;
+            InputLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            InputLabel.Location = new Point(485, 148);
+            InputLabel.Name = "InputLabel";
+            InputLabel.Size = new Size(35, 15);
+            InputLabel.TabIndex = 14;
+            InputLabel.Text = "Input";
+            // 
+            // OutputLabel
+            // 
+            OutputLabel.AutoSize = true;
+            OutputLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            OutputLabel.Location = new Point(691, 148);
+            OutputLabel.Name = "OutputLabel";
+            OutputLabel.Size = new Size(45, 15);
+            OutputLabel.TabIndex = 15;
+            OutputLabel.Text = "Output";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(OutputLabel);
+            Controls.Add(InputLabel);
+            Controls.Add(Run_decipher);
             Controls.Add(OutputBox);
             Controls.Add(InputBox);
             Controls.Add(Run_cipher);
@@ -99,5 +136,8 @@
         private Button Run_cipher;
         private TextBox InputBox;
         private TextBox OutputBox;
+        private Button Run_decipher;
+        private Label InputLabel;
+        private Label OutputLabel;
     }
 }

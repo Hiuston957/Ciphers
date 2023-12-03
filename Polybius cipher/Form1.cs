@@ -38,7 +38,8 @@ namespace Polybius_cipher
                 {
                     siatka.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
                     TextBox poleTekstowe = new TextBox();
-                    poleTekstowe.Text = (i * 10 + j).ToString();
+                    //poleTekstowe.Text = (i * 10 + j).ToString();
+                    poleTekstowe.Text = "-";
                     poleTekstowe.Width = 20;
                     // poleTekstowe.MaxLength = 2;
                     siatka.Controls.Add(poleTekstowe, j, i);
@@ -94,19 +95,54 @@ namespace Polybius_cipher
             {
                 PolyList znalezionaKlasa = PolybiusList.FirstOrDefault(klasa => klasa.id == letter);
 
-                Output.Add((znalezionaKlasa.XAx+1).ToString()[0]);
-                Output.Add((znalezionaKlasa.YAx+1).ToString()[0]);
+                Output.Add((znalezionaKlasa.XAx + 1).ToString()[0]);
+                Output.Add((znalezionaKlasa.YAx + 1).ToString()[0]);
 
             }
 
             string FinalOutput = string.Join("", Output);
             OutputBox.Text = FinalOutput;
 
-               // PolyList znalezionaKlasa = PolybiusList.FirstOrDefault(klasa => klasa.id == 'q');
+            // PolyList znalezionaKlasa = PolybiusList.FirstOrDefault(klasa => klasa.id == 'q');
 
             // label4.Text = ($" {znalezionaKlasa.XAx} {znalezionaKlasa.YAx}");
 
             //  czytaj();
+        }
+
+        private void decrypt()
+        {
+            string TxtToDecrypt = "112233";
+
+            char[] charInput = TxtToDecrypt.ToCharArray();
+
+            int length = charInput.Length;
+
+            int[,] TxtCord = new int[length / 2, 2];
+
+            for (int i = 0; i < length; i += 2)
+            {
+                TxtCord[i / 2, 0] = charInput[i] - '0';
+                TxtCord[i / 2, 1] = charInput[i + 1] - '0';
+            }
+
+            // ---------------------------------------
+        }
+
+
+
+
+
+
+
+        private void InputBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Run_decipher_Click(object sender, EventArgs e)
+        {
+            decrypt();
         }
     }
 }
