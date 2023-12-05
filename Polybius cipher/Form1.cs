@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using static Polybius_cipher.Form1;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Polybius_cipher
@@ -12,10 +13,21 @@ namespace Polybius_cipher
             public char id { get; set; }
             public int XAx { get; set; }
             public int YAx { get; set; }
+
+            public int BigID;
+
+            public PolyList(char Id, int xAx, int yAx)
+            {
+                id = Id;
+                XAx = xAx;
+                YAx = yAx;
+                BigID = XAx * 10 + YAx;
+            }
+
         }
 
 
-        List<PolyList> PolybiusList = new List<PolyList>();
+        public List<PolyList> PolybiusList = new List<PolyList>();
 
         public Form1()
         {
@@ -54,6 +66,10 @@ namespace Polybius_cipher
         }
 
 
+
+
+
+
         private void czytaj()
         {
 
@@ -66,7 +82,8 @@ namespace Polybius_cipher
 
                     string wartosc = pt.Text;
 
-                    PolybiusList.Add(new PolyList() { id = wartosc[0], XAx = j, YAx = i });
+                    // PolybiusList.Add(new PolyList() { id = (char) wartosc[0], XAx = j, YAx = i });
+                    PolybiusList.Add(new PolyList((char)wartosc[0], j + 1, i + 1));
 
 
 
@@ -84,10 +101,12 @@ namespace Polybius_cipher
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void encrypt()
         {
             czytaj();
             string InputTxT = InputBox.Text.ToLower();
+            InputTxT = CheckString(InputTxT);
 
             List<char> Output = new List<char>();
 
@@ -95,24 +114,34 @@ namespace Polybius_cipher
             {
                 PolyList znalezionaKlasa = PolybiusList.FirstOrDefault(klasa => klasa.id == letter);
 
-                Output.Add((znalezionaKlasa.XAx + 1).ToString()[0]);
-                Output.Add((znalezionaKlasa.YAx + 1).ToString()[0]);
+                Output.Add((znalezionaKlasa.XAx).ToString()[0]);
+                Output.Add((znalezionaKlasa.YAx).ToString()[0]);
 
             }
 
             string FinalOutput = string.Join("", Output);
             OutputBox.Text = FinalOutput;
 
-            // PolyList znalezionaKlasa = PolybiusList.FirstOrDefault(klasa => klasa.id == 'q');
+        }
 
-            // label4.Text = ($" {znalezionaKlasa.XAx} {znalezionaKlasa.YAx}");
 
-            //  czytaj();
+
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            encrypt();
+
+
         }
 
         private void decrypt()
         {
-            string TxtToDecrypt = "112233";
+            czytaj();
+
+            string TxtToDecrypt = InputBox.Text.ToLower();
 
             char[] charInput = TxtToDecrypt.ToCharArray();
 
@@ -126,17 +155,28 @@ namespace Polybius_cipher
                 TxtCord[i / 2, 1] = charInput[i + 1] - '0';
             }
 
-            foreach (int i in TxtCord) 
+            char[] output = new char[length / 2];
+
+            for (int i = 0; i < output.Length; i++)
             {
-                TxtCord[i, 1] = 99;
-            
+
+                output[i] = FindIdByBigID(PolybiusList, TxtCord[i, 0] * 10 + TxtCord[i, 1]);
+
             }
-            
+            OutputBox.Text = new string(output);
+
         }
 
 
 
+        public char FindIdByBigID(List<PolyList> polyList, int targetBigID)
+        {
 
+            PolyList foundObject = polyList.Find(obj => obj.BigID == targetBigID);
+
+
+            return foundObject != null ? foundObject.id : '\0';
+        }
 
 
 
@@ -149,5 +189,38 @@ namespace Polybius_cipher
         {
             decrypt();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        static string CheckString(string input)
+        {
+
+            string charList = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
+            char[] allowedChars = charList.ToCharArray();
+            char[] resultArray = new char[input.Length];
+            int resultIndex = 0;
+
+            foreach (char character in input)
+            {
+                if (Array.IndexOf(allowedChars, character) != -1)
+                {
+                    // Znak jest z tablicy dozwolonych, dodaj do wynikowego ciągu
+                    resultArray[resultIndex++] = character;
+                }
+                // Inaczej pomijamy znak spoza tablicy
+            }
+
+            // Konwertuj tablicę wynikową do ciągu
+            return new string(resultArray, 0, resultIndex);
+        }
+
+
+
+
     }
 }
