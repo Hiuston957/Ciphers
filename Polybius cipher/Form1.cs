@@ -126,7 +126,12 @@ namespace Polybius_cipher
                 TxtCord[i / 2, 1] = charInput[i + 1] - '0';
             }
 
-            // ---------------------------------------
+            foreach (int i in TxtCord) 
+            {
+                TxtCord[i, 1] = 99;
+            
+            }
+            
         }
 
 
