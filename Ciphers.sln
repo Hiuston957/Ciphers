@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caesar cripher", "Criphers\Caesar cripher.csproj", "{FA4073D7-F0E2-4BEC-8ADF-C2E328BCD02B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caesar cripher", "Caesar scipher\Caesar cripher.csproj", "{FA4073D7-F0E2-4BEC-8ADF-C2E328BCD02B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Caesar cripher", "Caesar cripher", "{959C1E2D-87BA-448B-988B-8382C8B1A3D0}"
 EndProject
