@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using static Polybius_cipher.Form1;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -28,12 +31,12 @@ namespace Polybius_cipher
 
 
         public List<PolyList> PolybiusList = new List<PolyList>();
-
+        public bool ErrorList=false;
         public Form1()
         {
             InitializeComponent();
             StworzSiatke(5, 7);
-            // czytaj();
+            
         }
 
         private void StworzSiatke(int liczbaWierszy, int liczbaKolumn)
@@ -50,10 +53,10 @@ namespace Polybius_cipher
                 {
                     siatka.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
                     TextBox poleTekstowe = new TextBox();
-                    //poleTekstowe.Text = (i * 10 + j).ToString();
+                   
                     poleTekstowe.Text = "-";
                     poleTekstowe.Width = 20;
-                    // poleTekstowe.MaxLength = 2;
+                    
                     siatka.Controls.Add(poleTekstowe, j, i);
                 }
             }
@@ -70,19 +73,44 @@ namespace Polybius_cipher
 
 
 
-        private void czytaj()
+        private void Czytaj()
         {
-
+            Dictionary<char, int> checkletter = new Dictionary<char, int>();
 
             for (int i = 0; i <= 6; i++)
             {
-                for (int j = 0; j <= 4; j++)
+                for (int j = 0; j <= 4; j++) 
                 {
-                    TextBox pt = siatka.GetControlFromPosition(i, j) as TextBox;
+                    TextBox? pt = siatka.GetControlFromPosition(i, j) as TextBox;
 
                     string wartosc = pt.Text;
+                    char finalwartosc = wartosc[0];
 
-                    // PolybiusList.Add(new PolyList() { id = (char) wartosc[0], XAx = j, YAx = i });
+                   
+
+
+
+                    if (checkletter.ContainsKey((char)wartosc[0]))
+                    {
+
+                         MessageBox.Show("character array contains duplicates", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                       
+                        ErrorList = false;
+                        return;
+                       
+                    }
+                    else
+                        checkletter.TryAdd(finalwartosc, 1);
+                  
+
+
+
+
+
+
+
+
+
                     PolybiusList.Add(new PolyList((char)wartosc[0], j + 1, i + 1));
 
 
@@ -91,22 +119,30 @@ namespace Polybius_cipher
 
             }
 
-            //for (int k = 0; k <= 5; k++) { };
+
+            if (checkletter.Count != 35)
+            {
+                ErrorList = false;
+                MessageBox.Show("character array contains errors", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+              
 
 
 
 
 
-
-
-        }
+            }
 
 
         private void encrypt()
         {
-            czytaj();
+            Czytaj();
+          
+           // if (ErrorList==false) { return; }
+
             string InputTxT = InputBox.Text.ToLower();
-            InputTxT = CheckString(InputTxT);
+            InputTxT = CheckStringEn(InputTxT);
 
             List<char> Output = new List<char>();
 
@@ -121,6 +157,7 @@ namespace Polybius_cipher
 
             string FinalOutput = string.Join("", Output);
             OutputBox.Text = FinalOutput;
+            Console.WriteLine(FinalOutput);
 
         }
 
@@ -139,9 +176,12 @@ namespace Polybius_cipher
 
         private void decrypt()
         {
-            czytaj();
+            Czytaj();
+           // if (ErrorList == false) { return; }
 
             string TxtToDecrypt = InputBox.Text.ToLower();
+            TxtToDecrypt = CheckStringDe(TxtToDecrypt);
+
 
             char[] charInput = TxtToDecrypt.ToCharArray();
 
@@ -192,12 +232,11 @@ namespace Polybius_cipher
 
         private void label4_Click(object sender, EventArgs e)
         {
-
         }
 
 
 
-        static string CheckString(string input)
+        static string CheckStringEn(string input)
         {
 
             string charList = "aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż";
@@ -209,16 +248,53 @@ namespace Polybius_cipher
             {
                 if (Array.IndexOf(allowedChars, character) != -1)
                 {
-                    // Znak jest z tablicy dozwolonych, dodaj do wynikowego ciągu
+                    
                     resultArray[resultIndex++] = character;
                 }
-                // Inaczej pomijamy znak spoza tablicy
+              
             }
 
-            // Konwertuj tablicę wynikową do ciągu
+            
             return new string(resultArray, 0, resultIndex);
         }
 
+        static string CheckStringDe(string input)
+        {
+
+            string charList = "0123456789";
+            char[] allowedChars = charList.ToCharArray();
+            char[] resultArray = new char[input.Length];
+            int resultIndex = 0;
+
+            foreach (char character in input)
+            {
+                if (Array.IndexOf(allowedChars, character) != -1)
+                {
+                    
+                    resultArray[resultIndex++] = character;
+                }
+                
+            }
+
+            
+            return new string(resultArray, 0, resultIndex);
+        }
+
+        static void MoreComplicatedDE(string input)
+        {
+            char[] resultArray = new char[input.Length];
+            if (input.Length > 2) 
+            {
+                
+                int a= resultArray[2] - '0';
+                int b = resultArray[2] - '0';
+
+               // a=(a+2)
+
+            }
+
+
+        }
 
 
 
