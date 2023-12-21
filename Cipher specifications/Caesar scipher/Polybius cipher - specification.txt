@@ -1,0 +1,42 @@
+Text Encryption and Decryption Application Specification (Polybius cipher)
+
+Author: 14546
+
+    The Polybius cipher application is a versatile tool designed to facilitate text encryption and decryption using the Polybius cipher algorithm. This application allows users to input text, choose an encryption or decryption key, and perform the corresponding operation on the text.
+
+    Application Features
+
+    2.1 Encryption
+        Users can input text to be encrypted in the "Normal text (input)" field.
+        The application provides a dropdown list "Key" for users to select an encryption key.
+        After selecting the key and clicking the "Run encryption" button, the text undergoes encryption using a Polybius cipher algorithm.
+        The encrypted text is then displayed in the "Ciphertext (output)" field.
+
+    2.2 Decryption
+        Users can input the encrypted text in the "Ciphertext (output)" field for decryption.
+        A dropdown list "Key" is available for users to select a decryption key.
+        Upon selecting the key and clicking the "Run decryption" button, the encrypted text is decrypted and displayed in the "Normal text (input)" field.
+
+    2.3 Mode Switching
+        The application allows users to seamlessly switch between encryption and decryption modes by toggling the "Encrypt" and "Decrypt" radio buttons.
+        Changing the mode dynamically updates the labels of text fields and buttons to reflect the chosen operation.
+
+    2.4 Error Handling
+        The application gracefully handles situations where users fail to provide text containing valid characters for the Polybius cipher during encryption. In such cases, these characters are omitted from the encryption process.
+        Letter case is not significant; the program converts all characters to lowercase for consistency.
+        The application effectively manages scenarios where users omit text or a key before attempting encryption or decryption. In such instances, the application displays an informative error message and prevents further processing.
+
+    2.5 Additional Complications in Encryption and Decryption
+        The application incorporates additional complexity in both encryption and decryption processes through the methods MoreComplicatedEN and MoreComplicatedDE.
+        MoreComplicatedEN: This static method introduces further encryption steps by adjusting the values of certain characters in the encrypted output.
+        MoreComplicatedDE: Similarly, this static method is employed during decryption to reverse the additional steps applied during encryption, ensuring accurate decryption results.
+
+    User Interface
+
+    The graphical user interface (GUI) of the application is thoughtfully designed with the following key elements:
+        "Normal text (input)" text field: Dedicated to receiving user input for encryption or decryption.
+        "Ciphertext (output)" text field: Displays the result of the encryption or decryption process.
+        Dropdown list "Key": Allows users to choose an encryption or decryption key.
+        "Run encryption" or "Run decryption" button: Activates the encryption or decryption process based on the selected option.
+        "Encrypt" and "Decrypt" radio buttons: Empower users to easily toggle between encryption and decryption modes.
+        Labels "Normal text (input)," "Ciphertext (output)," "Key," "Encrypt," and "Decrypt": Provide clear descriptions for their respective fields and options, enhancing user understanding.
