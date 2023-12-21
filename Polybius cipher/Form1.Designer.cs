@@ -72,7 +72,7 @@
             InputBox.Name = "InputBox";
             InputBox.Size = new Size(100, 23);
             InputBox.TabIndex = 11;
-            InputBox.TextChanged += InputBox_TextChanged;
+            //InputBox.TextChanged += InputBox_TextChanged;
             // 
             // OutputBox
             // 
